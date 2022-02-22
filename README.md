@@ -1,7 +1,10 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 # Medical Database
 
->In this project WE used a relational database to create the initial data structure for a Medical Application.
+>In this project we used a relational database to create the initial data structure for a Clinic.
+We converted ERD diagram in the image below to a functional data base.
+
+![](./clinic_diagram.png)
 
 ## Built With
 
