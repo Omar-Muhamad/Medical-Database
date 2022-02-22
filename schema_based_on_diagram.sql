@@ -17,6 +17,8 @@ CREATE TABLE medical_histories (
   FOREIGN KEY (patient_id) REFERENCES patients(id)
 );
 
+CREATE INDEX ON medical_histories (patient_id);
+
 DROP TABLE IF EXISTS treatments;
 CREATE TABLE treatments (
   id INT GENERATED ALWAYS AS IDENTITY,
@@ -33,8 +35,10 @@ CREATE TABLE invoices (
   payed_at TIMESTAMP,
   medical_histories_id INT,
   PRIMARY KEY (id),
-  FOREIGN KEY (medical_histories_id) REFERENCES medical_histories(id)
+  FOREIGN KEY (medical_history_id) REFERENCES medical_histories(id)
 );
+
+CREATE INDEX ON invoices (medical_history_id);
 
 DROP TABLE IF EXISTS invoice_items;
 CREATE TABLE invoice_items (
@@ -49,6 +53,9 @@ CREATE TABLE invoice_items (
   FOREIGN KEY (treatment_id) REFERENCES treatments(id)
 );
 
+CREATE INDEX ON invoice_items (invoice_id);
+CREATE INDEX ON invoice_items (treatment_id);
+
 DROP TABLE IF EXISTS treatment_histories;
 CREATE TABLE treatment_histories (
   id INT GENERATED ALWAYS AS IDENTITY,
@@ -58,3 +65,6 @@ CREATE TABLE treatment_histories (
   FOREIGN KEY (medical_history_id) REFERENCES medical_histories(id),
   FOREIGN KEY (treatment_id) REFERENCES treatments(id)
 );
+
+CREATE INDEX ON treatment_histories (medical_history_id);
+CREATE INDEX ON treatment_histories (treatment_id);
